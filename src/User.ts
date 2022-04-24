@@ -1,3 +1,5 @@
+import faker from 'faker';
+
 // creating our User class type annotations
 class User {
   name: string;
@@ -9,4 +11,4 @@ class User {
   constructor( ) {
 
   }
-}
+} 

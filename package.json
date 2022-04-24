@@ -16,8 +16,5 @@
   "bugs": {
     "url": "https://github.com/rewpt/maps-ts/issues"
   },
-  "homepage": "https://github.com/rewpt/maps-ts#readme",
-  "devDependencies": {
-    "@faker-js/faker": "^6.2.0"
-  }
+  "homepage": "https://github.com/rewpt/maps-ts#readme"
 }
