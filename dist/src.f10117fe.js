@@ -27735,7 +27735,7 @@ var Company_1 = require("./Company");
 var user = new User_1.User();
 var company = new Company_1.Company();
 console.log(user, company);
-new google.maps.Map(document.getElementById('map'), {
+new google.maps.Map(document.getElementById("map"), {
   zoom: 1,
   center: {
     lat: 0,
