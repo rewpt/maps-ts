@@ -19,5 +19,8 @@
   "homepage": "https://github.com/rewpt/maps-ts#readme",
   "devDependencies": {
     "@faker-js/faker": "^6.2.0"
+  },
+  "dependencies": {
+    "@types/googlemaps": "^3.43.3"
   }
 }
