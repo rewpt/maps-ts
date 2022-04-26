@@ -27665,7 +27665,7 @@ exports.User = void 0; // command clicking on faker takes us to the type definit
 // the documentation.
 
 var faker_1 = require("@faker-js/faker"); // we need type definition files, which some libraries come with like Axios
-// newest version of faker does 
+// newest version of faker does
 // Old version did not so we would have needed to check 'Definitely Typed' to find it
 // We can do this at npmjs.com and query @types/faker
 // we would have then installed something like npm install @types/faker
@@ -27683,6 +27683,10 @@ function () {
       lng: parseFloat(faker_1.faker.address.longitude())
     };
   }
+
+  User.prototype.markerContent = function () {
+    return "<h1> User Name: ".concat(this.name, "</h1>");
+  };
 
   return User;
 }();
@@ -27702,7 +27706,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Company = void 0;
 
-var faker_1 = __importDefault(require("@faker-js/faker"));
+var faker_1 = __importDefault(require("@faker-js/faker")); // By saying implements mappable we tie the class to this
+// interface which will give us better error messages
+// if there is an error where your class initialization is
+// not congruent with the interface
+
 
 var Company =
 /** @class */
@@ -27716,11 +27724,14 @@ function () {
     };
   }
 
+  Company.prototype.markerContent = function () {
+    return "\n    <h1>Comapny Name: ".concat(this.companyName, "</h1>\n    <h3>Catchphrase: ").concat(this.catchPhrase, "</h3>\n    ");
+  };
+
   return Company;
 }();
 
 exports.Company = Company;
-;
 },{"@faker-js/faker":"node_modules/@faker-js/faker/dist/esm/index.mjs"}],"src/CustomMap.ts":[function(require,module,exports) {
 "use strict";
 
@@ -27743,12 +27754,20 @@ function () {
   }
 
   CustomMap.prototype.addMarker = function (mappable) {
-    new google.maps.Marker({
+    var _this = this;
+
+    var marker = new google.maps.Marker({
       map: this.googleMap,
       position: {
         lat: mappable.location.lat,
         lng: mappable.location.lng
       }
+    });
+    marker.addListener("click", function () {
+      var infoWindow = new google.maps.InfoWindow({
+        content: mappable.markerContent()
+      });
+      infoWindow.open(_this.googleMap, marker);
     });
   };
 
