@@ -27742,6 +27742,16 @@ function () {
     });
   }
 
+  CustomMap.prototype.addMarker = function (mappable) {
+    new google.maps.Marker({
+      map: this.googleMap,
+      position: {
+        lat: mappable.location.lat,
+        lng: mappable.location.lng
+      }
+    });
+  };
+
   return CustomMap;
 }();
 
@@ -27762,7 +27772,9 @@ var CustomMap_1 = require("./CustomMap");
 var user = new User_1.User();
 var company = new Company_1.Company();
 console.log(user, company);
-var customMap = new CustomMap_1.CustomMap("map"); // We may not want all of the methods possible on Map Given
+var customMap = new CustomMap_1.CustomMap("map");
+customMap.addMarker(user);
+customMap.addMarker(company); // We may not want all of the methods possible on Map Given
 // to us by google exposed, so we can make our own map class
 },{"./User":"src/User.ts","./Company":"src/Company.ts","./CustomMap":"src/CustomMap.ts"}],"../../../../.nvm/versions/node/v16.13.2/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
